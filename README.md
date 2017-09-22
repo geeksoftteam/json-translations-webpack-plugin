@@ -4,7 +4,7 @@ Webpack plugin for generating json from translations endpoint
 ### Installation
 
 ```shell
-npm install generate-json-webpack-plugin
+npm install json-translations-webpack-plugin
 ```
 
 ### Usage
