@@ -1,0 +1,26 @@
+{
+  "name": "json-translations-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Webpack plugin to generate JSON translation assets",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geeksoftteam/json-translations-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "json",
+    "translation"
+  ],
+  "author": "Geeksoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geeksoftteam/json-translations-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/geeksoftteam/json-translations-webpack-plugin#readme",
+  "dependencies": {
+    "sync-request": "^4.1.0"
+  }
+}
