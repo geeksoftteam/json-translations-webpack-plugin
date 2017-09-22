@@ -11,7 +11,7 @@ npm install generate-json-webpack-plugin
 
 ```js
 // webpack.config.js
-const JsonTranslationsPlugin = require('json-translations-webpack-plugin');
+const JSONTranslationsPlugin = require('json-translations-webpack-plugin');
 
 module.exports = {
   // ...
