@@ -1,27 +1,28 @@
 const request = require('sync-request');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const path = require('path');
 
 function getJSONTranslations(url, language) {
-  return Object.keys(languages).map(language => {
-    return JSON.parse(response.getBody());
-  });
+    return Object.keys(languages).map(language => {
+        return JSON.parse(response.getBody());
+    });
 }
 
 function apply(options, compiler) {
-  compiler.plugin('emit', function (compilation, callback) {
     const { output, url, languages } = options;
 
-    for (const language in languages) {
-      const response = request('GET', `${url}/${language}`);
-      const translations = response.getBody();
+    compiler.hooks.entryOption.tap('JSONTranslationsPlugin', () => {
+        const directory = path.join(compiler.context, output);
+        mkdirp(directory);
 
-      compilation.assets[`${output}/${language}.json`] = {
-        source: () => translations,
-        size: () => translations.length,
-      };
-    };
+        for (const language in languages) {
+            const response = request('GET', `${url}/${language}`);
+            const translations = response.getBody();
 
-    callback();
-  });
+            fs.writeFileSync(path.join(directory, `/${language}.json`), translations);
+        }
+    });
 };
 
 /**
@@ -31,9 +32,9 @@ function apply(options, compiler) {
  * @param {string[]} languages - Array of languages.
  */
 function JSONTranslationsPlugin(options) {
-  return {
-    apply: apply.bind(this, options)
-  };
+    return {
+        apply: apply.bind(this, options)
+    };
 }
 
 module.exports = JSONTranslationsPlugin;
